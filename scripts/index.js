@@ -77,7 +77,7 @@ const changeCarouselPosition = () => {
 };
 
 // set interval
- interval = setInterval(changeCarouselPosition, 10000);
+//  interval = setInterval(changeCarouselPosition, 10000);
 
  
 const resetInterval =()=> {
