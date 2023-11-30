@@ -1,3 +1,5 @@
+
+// declaring variables
 const container = document.querySelector(".container");
 const carouselImage = document.querySelector(".carousel_image");
 
@@ -13,9 +15,11 @@ const buttonRight = document.querySelector("#button_right");
 let image_number = image.length;
 let position = 0;
 let index_interval = 0;
-console.log(image_number);
+let image_width = 650;
+// console.log(image_number);
 
 
+// creating each navigation(circle) in each number of image.
 image.forEach((data, index)=>{
     const navigation_add = document.createElement("span");
     navigation_add.classList.add("carousel_nav");
@@ -27,14 +31,16 @@ image.forEach((data, index)=>{
     }
 
     navigation_add.addEventListener('click', ()=>{
-        console.log(image[index]);
+        // console.log(image[index]);
         setPosition(index);
         updateNavigation(index);
+        resetInterval();
     });
 });
 
+// setting image position to shift
 const setPosition = (index)=>{
-    position = -index * 800;
+    position = -index * image_width;
 
     // console.log(index);
     carouselImage.style.left=position+"px";
@@ -52,7 +58,7 @@ const updateNavigation = (index) => {
 };
 
 
-
+// function to work for image silde in each button click
 buttonRight.addEventListener('click', () => {
     index_interval = (index_interval + 1) % image_number;
     setPosition(index_interval);
@@ -70,19 +76,19 @@ buttonLeft.addEventListener('click', () => {
 
 
 
-// Function to change the position of the carousel at regular intervals
+// function to change the position of the carousel at regular intervals
 const changeCarouselPosition = () => {
-    position = (position - 800) % (image_number * 800);
+    position = (position - image_width) % (image_number * image_width);
     carouselImage.style.left = position + "px";
 };
 
 // set interval
- interval = setInterval(changeCarouselPosition, 10000);
+ interval = setInterval(changeCarouselPosition, 5000);
 
  
 const resetInterval =()=> {
     clearInterval(interval);
-    interval = setInterval(changeCarouselPosition, 10000);
+    interval = setInterval(changeCarouselPosition, 5000);
 }
 
 
